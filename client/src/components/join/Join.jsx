@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import io from "socket.io-client";
 
-export default function Join({ setChatVisibility }) {
+export default function Join({ setChatVisibility, setSocket }) {
   const usernameRef = useRef();
 
   const handleSubmit = async () => {
@@ -9,6 +9,7 @@ export default function Join({ setChatVisibility }) {
     if (!username.trim()) return;
     const socket = await io.connect("http://localhost:3001");
     socket.emit("set_username", username);
+    setSocket(socket);
     setChatVisibility(true);
   };
 
