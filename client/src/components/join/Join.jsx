@@ -13,10 +13,22 @@ export default function Join({ setChatVisibility, setSocket }) {
     setChatVisibility(true);
   };
 
+  const getEnterKey = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   return (
     <div>
       <h1>Join</h1>
-      <input type="text" ref={usernameRef} placeholder="Nome do usuário" />
+      <input
+        type="text"
+        ref={usernameRef}
+        placeholder="Nome do usuário"
+        onKeyDown={(e) => getEnterKey(e)}
+      />
       <button onClick={() => handleSubmit()}>Entrar</button>
     </div>
   );
